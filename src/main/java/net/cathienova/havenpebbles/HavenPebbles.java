@@ -3,6 +3,7 @@ package net.cathienova.havenpebbles;
 import com.mojang.logging.LogUtils;
 import net.cathienova.havenpebbles.config.CommonConfig;
 import net.cathienova.havenpebbles.events.PebbleHandler;
+import net.cathienova.havenpebbles.item.ModCreativeModeTab;
 import net.cathienova.havenpebbles.item.ModItems;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -40,9 +41,10 @@ public class HavenPebbles
 
         ModItems.register(modEventBus);
 
-        MinecraftForge.EVENT_BUS.register(PebbleHandler.class);
+        MinecraftForge.EVENT_BUS.register(new PebbleHandler());
 
         modEventBus.addListener(this::commonSetup);
+        ModCreativeModeTab.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
