@@ -32,10 +32,10 @@ public class PebbleHandler
         if (!enablePebbles)
             return;
 
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         if (event.getEntity().isCrouching() && player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty())
         {
-            Level world = event.getWorld();
+            Level world = event.getLevel();
             BlockPos blockPos = event.getPos().above();
             Block block = world.getBlockState(blockPos.below()).getBlock();
 
