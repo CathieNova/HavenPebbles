@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "havenpebbles:calcite_pebble"
+    }
+  },
+  "result": {
+    "item": "minecraft:calcite",
+    "count": 1
+  }
+}

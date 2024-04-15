@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "havenpebbles:basalt_pebble"
+    }
+  },
+  "result": {
+    "item": "minecraft:basalt",
+    "count": 1
+  }
+}

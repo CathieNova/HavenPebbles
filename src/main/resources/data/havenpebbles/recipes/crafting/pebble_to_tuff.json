@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "havenpebbles:tuff_pebble"
+    }
+  },
+  "result": {
+    "item": "minecraft:tuff",
+    "count": 1
+  }
+}

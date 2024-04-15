@@ -1,0 +1,18 @@
+{
+  "item.havenpebbles.andesite_pebble": "Andesite Pebble",
+  "item.havenpebbles.basalt_pebble": "Basalt Pebble",
+  "item.havenpebbles.blackstone_pebble": "Blackstone Pebble",
+  "item.havenpebbles.calcite_pebble": "Calcite Pebble",
+  "item.havenpebbles.deepslate_pebble": "Deepslate Pebble",
+  "item.havenpebbles.diorite_pebble": "Diorite Pebble",
+  "item.havenpebbles.dripstone_pebble": "Dripstone Pebble",
+  "item.havenpebbles.granite_pebble": "Granite Pebble",
+  "item.havenpebbles.netherrack_pebble": "Netherrack Pebble",
+  "item.havenpebbles.stone_pebble": "Stone Pebble",
+  "item.havenpebbles.tuff_pebble": "Tuff Pebble",
+
+  "key.categories.havenpebbles.havenpebbles": "Haven Pebbles",
+  "key.havenpebbles.compress": "Compress Pebbles",
+
+  "itemGroup.havenpebbles": "\u00A75Haven \u00A72Pebbles"
+}

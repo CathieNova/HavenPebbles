@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "PP",
+    "PP"
+  ],
+  "key": {
+    "P": {
+      "item": "havenpebbles:netherrack_pebble"
+    }
+  },
+  "result": {
+    "item": "minecraft:netherrack",
+    "count": 1
+  }
+}
