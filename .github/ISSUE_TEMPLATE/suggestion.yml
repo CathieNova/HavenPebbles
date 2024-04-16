@@ -1,0 +1,14 @@
+name: Suggestion
+description: >-
+  Please use this template when you want to suggest a feature for HavenPebbles.
+title: '[Suggestion]: '
+body:
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggestion
+      placeholder: >-
+        Example:  
+        It would be nice to have more pebbles, like Endstone Pebbles.
+    validations:
+      required: true
