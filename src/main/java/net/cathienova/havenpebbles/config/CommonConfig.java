@@ -1,24 +1,28 @@
 package net.cathienova.havenpebbles.config;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
+import org.apache.commons.lang3.tuple.Pair;
 
 public class CommonConfig {
-    public final ForgeConfigSpec.BooleanValue enablePebbles;
-    public final ForgeConfigSpec.BooleanValue onlyDimensionalPebbles;
-    public final ForgeConfigSpec.BooleanValue emitPebbleSound;
-    public final ForgeConfigSpec.IntValue andesitePebbleWeight;
-    public final ForgeConfigSpec.IntValue calcitePebbleWeight;
-    public final ForgeConfigSpec.IntValue deepslatePebbleWeight;
-    public final ForgeConfigSpec.IntValue dioritePebbleWeight;
-    public final ForgeConfigSpec.IntValue dripstonePebbleWeight;
-    public final ForgeConfigSpec.IntValue granitePebbleWeight;
-    public final ForgeConfigSpec.IntValue tuffPebbleWeight;
-    public final ForgeConfigSpec.IntValue stonePebbleWeight;
-    public final ForgeConfigSpec.IntValue netherrackPebbleWeight;
-    public final ForgeConfigSpec.IntValue basaltPebbleWeight;
-    public final ForgeConfigSpec.IntValue blackstonePebbleWeight;
+    public static final Pair<CommonConfig, ModConfigSpec> SPEC_PAIR = new ModConfigSpec.Builder().configure(CommonConfig::new);
+    public static final CommonConfig CONFIG = SPEC_PAIR.getLeft();
+    public static final ModConfigSpec SPEC = SPEC_PAIR.getRight();
+    public final ModConfigSpec.ConfigValue<Boolean> enablePebbles;
+    public final ModConfigSpec.ConfigValue<Boolean> onlyDimensionalPebbles;
+    public final ModConfigSpec.ConfigValue<Boolean> emitPebbleSound;
+    public final ModConfigSpec.ConfigValue<Integer> andesitePebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> calcitePebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> deepslatePebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> dioritePebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> dripstonePebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> granitePebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> tuffPebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> stonePebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> netherrackPebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> basaltPebbleWeight;
+    public final ModConfigSpec.ConfigValue<Integer> blackstonePebbleWeight;
 
-    public CommonConfig(ForgeConfigSpec.Builder builder) {
+    public CommonConfig(ModConfigSpec.Builder builder) {
         enablePebbles = builder.comment("Enable pebbles?").define("enablePebbles", true);
         onlyDimensionalPebbles = builder.comment("Should pebbles only generate in their respective dimensions?").define("onlyDimensionalPebbles", true);
         emitPebbleSound = builder.comment("When right clicking to get pebbles, should it emit sound?").define("emitPebbleSound", true);

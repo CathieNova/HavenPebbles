@@ -13,15 +13,15 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.bus.api.Event;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-import static net.cathienova.havenpebbles.config.HavenPebblesConfig.*;
+import static net.cathienova.havenpebbles.config.CommonConfig.CONFIG;
 
 @Mod.EventBusSubscriber(modid = HavenPebbles.MODID)
 public class PebbleHandler
@@ -29,7 +29,7 @@ public class PebbleHandler
     @SubscribeEvent
     public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event)
     {
-        if (!enablePebbles)
+        if (!CONFIG.enablePebbles.get())
             return;
 
         Player player = event.getEntity();
@@ -87,7 +87,7 @@ public class PebbleHandler
 
                 world.addFreshEntity(itemEntity);
 
-                if (emitPebbleSound)
+                if (CONFIG.emitPebbleSound.get())
                     world.playSound(null, blockPos, SoundEvents.BEEHIVE_ENTER, SoundSource.PLAYERS, 0.75F, 0.75F);
             }
             event.setUseItem(Event.Result.DENY);
@@ -100,32 +100,32 @@ public class PebbleHandler
     {
         if ((block == Blocks.DIRT || block == Blocks.GRASS_BLOCK))
         {
-            if (onlyDimensionalPebbles && !level.dimension().equals(Level.OVERWORLD))
+            if (CONFIG.onlyDimensionalPebbles.get() && !level.dimension().equals(Level.OVERWORLD))
             {
                 return null;
             }
 
             return new WeightedPebble[]{
-                    new WeightedPebble(ModItems.andesite_pebble.get(), andesitePebbleWeight),
-                    new WeightedPebble(ModItems.calcite_pebble.get(), calcitePebbleWeight),
-                    new WeightedPebble(ModItems.deepslate_pebble.get(), deepslatePebbleWeight),
-                    new WeightedPebble(ModItems.diorite_pebble.get(), dioritePebbleWeight),
-                    new WeightedPebble(ModItems.dripstone_pebble.get(), dripstonePebbleWeight),
-                    new WeightedPebble(ModItems.granite_pebble.get(), granitePebbleWeight),
-                    new WeightedPebble(ModItems.tuff_pebble.get(), tuffPebbleWeight),
-                    new WeightedPebble(ModItems.stone_pebble.get(), stonePebbleWeight)
+                    new WeightedPebble(ModItems.andesite_pebble.get(), CONFIG.andesitePebbleWeight.get()),
+                    new WeightedPebble(ModItems.calcite_pebble.get(), CONFIG.calcitePebbleWeight.get()),
+                    new WeightedPebble(ModItems.deepslate_pebble.get(), CONFIG.deepslatePebbleWeight.get()),
+                    new WeightedPebble(ModItems.diorite_pebble.get(), CONFIG.dioritePebbleWeight.get()),
+                    new WeightedPebble(ModItems.dripstone_pebble.get(), CONFIG.dripstonePebbleWeight.get()),
+                    new WeightedPebble(ModItems.granite_pebble.get(), CONFIG.granitePebbleWeight.get()),
+                    new WeightedPebble(ModItems.tuff_pebble.get(), CONFIG.tuffPebbleWeight.get()),
+                    new WeightedPebble(ModItems.stone_pebble.get(), CONFIG.stonePebbleWeight.get())
             };
         }
         else if (block == Blocks.NETHERRACK)
         {
-            if (onlyDimensionalPebbles && !level.dimension().equals(Level.NETHER))
+            if (CONFIG.onlyDimensionalPebbles.get() && !level.dimension().equals(Level.NETHER))
             {
                 return null;
             }
             return new WeightedPebble[]{
-                    new WeightedPebble(ModItems.netherrack_pebble.get(), netherrackPebbleWeight),
-                    new WeightedPebble(ModItems.basalt_pebble.get(), basaltPebbleWeight),
-                    new WeightedPebble(ModItems.blackstone_pebble.get(), blackstonePebbleWeight)
+                    new WeightedPebble(ModItems.netherrack_pebble.get(), CONFIG.netherrackPebbleWeight.get()),
+                    new WeightedPebble(ModItems.basalt_pebble.get(), CONFIG.basaltPebbleWeight.get()),
+                    new WeightedPebble(ModItems.blackstone_pebble.get(), CONFIG.blackstonePebbleWeight.get())
             };
         }
         else
