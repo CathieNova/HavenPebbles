@@ -12,10 +12,10 @@ license="${mod_license}"
     mandatory=true
     versionRange="${forge_version_range}"
     ordering="NONE"
-    side="CLIENT"
+    side="BOTH"
 [[dependencies.havenpebbles]]
     modId="minecraft"
     mandatory=true
     versionRange="${minecraft_version_range}"
     ordering="NONE"
-    side="CLIENT"
+    side="BOTH"
