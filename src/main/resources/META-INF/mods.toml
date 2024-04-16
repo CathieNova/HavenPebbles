@@ -9,13 +9,11 @@ license="${mod_license}"
     description='''${mod_description}'''
 [[dependencies.havenpebbles]]
     modId="neoforge"
-    mandatory=true
     versionRange="${neo_version_range}"
     ordering="NONE"
     side="BOTH"
 [[dependencies.havenpebbles]]
     modId="minecraft"
-    mandatory=true
     versionRange="${minecraft_version_range}"
     ordering="NONE"
     side="BOTH"
