@@ -13,57 +13,57 @@ public class ModItems {
 
     public static final DeferredItem<Item> andesite_pebble = ITEMS.register("andesite_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> basalt_pebble = ITEMS.register("basalt_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> blackstone_pebble = ITEMS.register("blackstone_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> calcite_pebble = ITEMS.register("calcite_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> deepslate_pebble = ITEMS.register("deepslate_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> diorite_pebble = ITEMS.register("diorite_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> dripstone_pebble = ITEMS.register("dripstone_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> granite_pebble = ITEMS.register("granite_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> netherrack_pebble = ITEMS.register("netherrack_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> tuff_pebble = ITEMS.register("tuff_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
     public static final DeferredItem<Item> stone_pebble = ITEMS.register("stone_pebble",
             () -> new PebbleItem(new Item.Properties()
-                    .food(new FoodProperties.Builder().nutrition(1).saturationMod(0.1f).fast()
-                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 100), 1.0f)
-                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 100), 1.0f).build())));
+                    .food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1f).fast()
+                            .effect(() -> new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 500), 0.9f)
+                            .effect(() -> new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500), 0.9f).build())));
 }

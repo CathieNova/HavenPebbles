@@ -16,9 +16,8 @@ public class PebbleItem extends Item {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack stack, Level world, @NotNull List<Component> tooltip, @NotNull TooltipFlag flag) {
-        super.appendHoverText(stack, world, tooltip, flag);
-
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag)
+    {
         // Get the nutrition and saturation values from the item's food properties
         String grayText = ChatFormatting.GRAY + "Eat me if you dare...";
 

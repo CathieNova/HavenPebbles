@@ -15,7 +15,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,7 +25,7 @@ import java.util.Random;
 
 import static net.cathienova.havenpebbles.config.CommonConfig.CONFIG;
 
-@Mod.EventBusSubscriber(modid = HavenPebbles.MODID)
+@EventBusSubscriber(modid = HavenPebbles.MODID)
 public class PebbleHandler
 {
     @SubscribeEvent
@@ -90,7 +92,7 @@ public class PebbleHandler
                 if (CONFIG.emitPebbleSound.get())
                     world.playSound(null, blockPos, SoundEvents.BEEHIVE_ENTER, SoundSource.PLAYERS, 0.75F, 0.75F);
             }
-            event.setUseItem(Event.Result.DENY);
+            event.setUseItem(TriState.FALSE);
             event.setCanceled(true);
         }
     }

@@ -7,7 +7,8 @@ import net.cathienova.havenpebbles.item.ModItems;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
@@ -22,10 +23,10 @@ public class HavenPebbles
     public static final String MODID = "havenpebbles";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    public HavenPebbles(IEventBus bus)
+    public HavenPebbles(IEventBus bus, ModContainer modContainer)
     {
         bus.addListener(this::commonSetup);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, CommonConfig.SPEC);
         ModItems.ITEMS.register(bus);
         ModCreativeTab.CREATIVE_MODE_TABS.register(bus);
 
@@ -43,7 +44,7 @@ public class HavenPebbles
 
     }
 
-    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
