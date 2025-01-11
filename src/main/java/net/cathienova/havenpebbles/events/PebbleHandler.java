@@ -1,8 +1,10 @@
 package net.cathienova.havenpebbles.events;
 
 import net.cathienova.havenpebbles.HavenPebbles;
-import net.cathienova.havenpebbles.item.ModItems;
+import net.cathienova.havenpebbles.config.HavenPebblesConfig;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -12,148 +14,120 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.neoforged.bus.api.Event;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
+import java.util.*;
 
-import static net.cathienova.havenpebbles.config.CommonConfig.CONFIG;
+@EventBusSubscriber
+public class PebbleHandler {
+    private static final Map<Block, List<WeightedPebble>> blockPebbleMapping = new HashMap<>();
+    private static boolean spawnPebble = true;
 
-@EventBusSubscriber(modid = HavenPebbles.MODID)
-public class PebbleHandler
-{
+    public static void loadMappings() {
+        blockPebbleMapping.clear();
+        HavenPebblesConfig.blockPebbleMappings.forEach(mapping -> {
+            String[] parts = mapping.split(";");
+            if (parts.length == 2) {
+                String blockName = parts[0];
+                String[] pebbles = parts[1].split(",");
+                Block block = BuiltInRegistries.BLOCK.get(ResourceLocation.tryParse(blockName));
+                if (block != null) {
+                    List<WeightedPebble> weightedPebbles = new ArrayList<>();
+                    for (String pebbleData : pebbles) {
+                        String[] pebbleParts = pebbleData.split(":");
+                        if (pebbleParts.length == 2 || pebbleParts.length == 3) {
+                            String itemName = pebbleParts[0] + ":" + pebbleParts[1];
+                            int weight = Integer.parseInt(pebbleParts[2]);
+                            Item item = BuiltInRegistries.ITEM.get(ResourceLocation.tryParse(itemName));
+                            if (item != null) {
+                                weightedPebbles.add(new WeightedPebble(item, weight));
+                            }
+                        }
+                    }
+                    blockPebbleMapping.put(block, weightedPebbles);
+                }
+            }
+        });
+    }
+
     @SubscribeEvent
-    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event)
-    {
-        if (!CONFIG.enablePebbles.get())
+    public static void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event) {
+        if (!HavenPebblesConfig.enablePebbles) return;
+
+        // Ensure only the main hand triggers the logic
+        if (event.getHand() != InteractionHand.MAIN_HAND) return;
+
+        if (event.getLevel().isClientSide()) {
+            HavenPebbles.LOGGER.info("Event ignored on client side.");
             return;
+        }
 
         Player player = event.getEntity();
-        if (event.getEntity().isCrouching() && player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty())
-        {
+        if (player.isCrouching() && player.getItemInHand(InteractionHand.MAIN_HAND).isEmpty()) {
             Level world = event.getLevel();
             BlockPos blockPos = event.getPos().above();
             Block block = world.getBlockState(blockPos.below()).getBlock();
 
-            // Pebble items with their respective chances (weights)
-            WeightedPebble[] pebbles = getWeightedPebbles(block, world);
+            List<WeightedPebble> weightedPebbles = blockPebbleMapping.get(block);
+            HavenPebbles.LOGGER.info("Player crouching and right-clicked block: " + block);
+            HavenPebbles.LOGGER.info("Pebbles for block: " + weightedPebbles);
 
-            // Calculate total weight
-            int totalWeight = 0;
-            if (pebbles != null)
-            {
-                for (WeightedPebble weightedPebble : pebbles)
-                {
-                    totalWeight += weightedPebble.getWeight();
-                }
-            }
+            if (weightedPebbles == null || weightedPebbles.isEmpty()) return;
 
-            // Randomly select a pebble based on its chance (weight)
+            int totalWeight = weightedPebbles.stream().mapToInt(WeightedPebble::getWeight).sum();
+            if (totalWeight <= 0) return;
+
             Random random = new Random();
-            if (totalWeight <= 0)
-            {
-                return;
-            }
-
             int randomWeight = random.nextInt(totalWeight);
             ItemStack selectedPebble = null;
 
-            for (WeightedPebble weightedPebble : pebbles)
-            {
-                randomWeight -= weightedPebble.getWeight();
-                if (randomWeight < 0)
-                {
-                    selectedPebble = new ItemStack(weightedPebble.getPebble());
+            for (WeightedPebble pebble : weightedPebbles) {
+                randomWeight -= pebble.getWeight();
+                if (randomWeight < 0) {
+                    selectedPebble = new ItemStack(pebble.getPebble());
                     break;
                 }
             }
 
-            // Spawn the selected pebble item
-            if (selectedPebble != null)
-            {
-                Random randomV = new Random();
-                double randomXOffset = 0.3 + (0.6 - 0.3) * randomV.nextDouble();
-                double randomZOffset = 0.3 + (0.6 - 0.3) * randomV.nextDouble();
+            if (selectedPebble != null) {
+                double randomXOffset = 0.3 + (0.6 - 0.3) * random.nextDouble();
+                double randomZOffset = 0.3 + (0.6 - 0.3) * random.nextDouble();
 
                 double newX = blockPos.getX() + randomXOffset;
-                double newY = blockPos.getY() - 0.25;  // Keeping the original Y value
+                double newY = blockPos.getY() - 0.25;
                 double newZ = blockPos.getZ() + randomZOffset;
 
                 ItemEntity itemEntity = new ItemEntity(world, newX, newY, newZ, selectedPebble);
-
                 world.addFreshEntity(itemEntity);
 
-                if (CONFIG.emitPebbleSound.get())
+                if (HavenPebblesConfig.emitPebbleSound) {
                     world.playSound(null, blockPos, SoundEvents.BEEHIVE_ENTER, SoundSource.PLAYERS, 0.75F, 0.75F);
+                }
             }
+
+            event.setUseBlock(TriState.FALSE);
             event.setUseItem(TriState.FALSE);
             event.setCanceled(true);
         }
     }
 
-    @NotNull
-    private static WeightedPebble[] getWeightedPebbles(Block block, Level level)
-    {
-        if ((block == Blocks.DIRT || block == Blocks.GRASS_BLOCK))
-        {
-            if (CONFIG.onlyDimensionalPebbles.get() && !level.dimension().equals(Level.OVERWORLD))
-            {
-                return null;
-            }
-
-            return new WeightedPebble[]{
-                    new WeightedPebble(ModItems.andesite_pebble.get(), CONFIG.andesitePebbleWeight.get()),
-                    new WeightedPebble(ModItems.calcite_pebble.get(), CONFIG.calcitePebbleWeight.get()),
-                    new WeightedPebble(ModItems.deepslate_pebble.get(), CONFIG.deepslatePebbleWeight.get()),
-                    new WeightedPebble(ModItems.diorite_pebble.get(), CONFIG.dioritePebbleWeight.get()),
-                    new WeightedPebble(ModItems.dripstone_pebble.get(), CONFIG.dripstonePebbleWeight.get()),
-                    new WeightedPebble(ModItems.granite_pebble.get(), CONFIG.granitePebbleWeight.get()),
-                    new WeightedPebble(ModItems.tuff_pebble.get(), CONFIG.tuffPebbleWeight.get()),
-                    new WeightedPebble(ModItems.stone_pebble.get(), CONFIG.stonePebbleWeight.get())
-            };
-        }
-        else if (block == Blocks.NETHERRACK)
-        {
-            if (CONFIG.onlyDimensionalPebbles.get() && !level.dimension().equals(Level.NETHER))
-            {
-                return null;
-            }
-            return new WeightedPebble[]{
-                    new WeightedPebble(ModItems.netherrack_pebble.get(), CONFIG.netherrackPebbleWeight.get()),
-                    new WeightedPebble(ModItems.basalt_pebble.get(), CONFIG.basaltPebbleWeight.get()),
-                    new WeightedPebble(ModItems.blackstone_pebble.get(), CONFIG.blackstonePebbleWeight.get())
-            };
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    private static class WeightedPebble
-    {
+    private static class WeightedPebble {
         private final Item pebble;
         private final int weight;
 
-        public WeightedPebble(Item pebble, int weight)
-        {
+        public WeightedPebble(Item pebble, int weight) {
             this.pebble = pebble;
             this.weight = weight;
         }
 
-        public Item getPebble()
-        {
+        public Item getPebble() {
             return pebble;
         }
 
-        public int getWeight()
-        {
+        public int getWeight() {
             return weight;
         }
     }
