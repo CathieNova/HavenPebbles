@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "PP",
     "PP"
   ],
   "key": {
     "P": {
-      "item": "havenpebbles:andesite_pebble"
+      "item": "havenpebbles:netherrack_pebble"
     }
   },
   "result": {
-    "item": "minecraft:andesite",
+    "id": "minecraft:netherrack",
     "count": 1
   }
 }

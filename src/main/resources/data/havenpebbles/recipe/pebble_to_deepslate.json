@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "PP",
     "PP"
   ],
   "key": {
     "P": {
-      "item": "havenpebbles:basalt_pebble"
+      "item": "havenpebbles:deepslate_pebble"
     }
   },
   "result": {
-    "item": "minecraft:basalt",
+    "id": "minecraft:cobbled_deepslate",
     "count": 1
   }
 }

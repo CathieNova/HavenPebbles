@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "PP",
     "PP"
   ],
   "key": {
     "P": {
-      "item": "havenpebbles:tuff_pebble"
+      "item": "havenpebbles:dripstone_pebble"
     }
   },
   "result": {
-    "item": "minecraft:tuff",
+    "id": "minecraft:pointed_dripstone",
     "count": 1
   }
 }

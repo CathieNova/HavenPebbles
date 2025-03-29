@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "PP",
     "PP"
   ],
   "key": {
     "P": {
-      "item": "havenpebbles:stone_pebble"
+      "item": "havenpebbles:basalt_pebble"
     }
   },
   "result": {
-    "item": "minecraft:cobblestone",
+    "id": "minecraft:basalt",
     "count": 1
   }
 }

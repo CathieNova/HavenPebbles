@@ -1,16 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "pattern": [
     "PP",
     "PP"
   ],
   "key": {
     "P": {
-      "item": "havenpebbles:diorite_pebble"
+      "item": "havenpebbles:tuff_pebble"
     }
   },
   "result": {
-    "item": "minecraft:diorite",
+    "id": "minecraft:tuff",
     "count": 1
   }
 }
