@@ -72,8 +72,8 @@ public class PebbleHandler {
             Block block = world.getBlockState(blockPos.below()).getBlock();
 
             List<WeightedPebble> weightedPebbles = blockPebbleMapping.get(block);
-            HavenPebbles.LOGGER.info("Player crouching and right-clicked block: " + block);
-            HavenPebbles.LOGGER.info("Pebbles for block: " + weightedPebbles);
+            // HavenPebbles.LOGGER.info("Player crouching and right-clicked block: " + block);
+            // HavenPebbles.LOGGER.info("Pebbles for block: " + weightedPebbles);
 
             if (weightedPebbles == null || weightedPebbles.isEmpty()) return;
 
