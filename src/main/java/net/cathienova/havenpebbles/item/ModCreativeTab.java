@@ -23,6 +23,7 @@ public class ModCreativeTab
             add.accept(ModItems.stone_pebble.get());
             add.accept(ModItems.netherrack_pebble.get());
             add.accept(ModItems.dripstone_pebble.get());
+            add.accept(ModItems.granite_pebble.get());
             add.accept(ModItems.diorite_pebble.get());
             add.accept(ModItems.deepslate_pebble.get());
             add.accept(ModItems.calcite_pebble.get());

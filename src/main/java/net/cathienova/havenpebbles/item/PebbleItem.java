@@ -1,14 +1,10 @@
 package net.cathienova.havenpebbles.item;
 
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
+import net.cathienova.havenpebbles.config.HavenPebblesConfig;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import org.jetbrains.annotations.NotNull;
-
-import java.util.List;
 
 public class PebbleItem extends Item {
     public PebbleItem(Properties properties) {
@@ -16,15 +12,19 @@ public class PebbleItem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag flag)
-    {
-        // Get the nutrition and saturation values from the item's food properties
-        String grayText = ChatFormatting.GRAY + "Eat me if you dare...";
+    public int getUseDuration(ItemStack stack, LivingEntity entity) {
+        return 16;
+    }
 
-        // Convert the gray text string to a Component
-        Component grayComponent = Component.nullToEmpty(grayText);
+    @Override
+    public ItemStack finishUsingItem(ItemStack stack, Level level, LivingEntity entity) {
+        Item item = stack.getItem();
+        ItemStack result = super.finishUsingItem(stack, level, entity);
 
-        // Add the gray text Component to the tooltip
-        tooltip.add(grayComponent);
+        if (!level.isClientSide()) {
+            HavenPebblesConfig.getPebbleEffects(item).apply(entity, level.getRandom());
+        }
+
+        return result;
     }
 }
